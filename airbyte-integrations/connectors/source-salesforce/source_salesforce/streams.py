@@ -190,6 +190,7 @@ class RestSalesforceStream(SalesforceStream):
         if self.primary_key and self.name not in UNSUPPORTED_FILTERING_STREAMS:
             query += f"ORDER BY {self.primary_key} ASC"
 
+        print("QUERY", query)
         return {"q": query}
 
     def chunk_properties(self) -> Iterable[Mapping[str, Any]]:
@@ -636,6 +637,7 @@ class BulkSalesforceStream(SalesforceStream):
             parent_ids = [f"'{parent_record[parent_field]}'" for parent_record in stream_slice["parents"]]
             query += f" WHERE ContentDocumentId IN ({','.join(parent_ids)})"
 
+        print("QUERY", query)
         return {"q": query}
 
     def read_records(
@@ -792,6 +794,7 @@ class IncrementalRestSalesforceStream(RestSalesforceStream, ABC):
         where_clause = f"WHERE {' AND '.join(where_conditions)}"
         query = f"SELECT {select_fields} FROM {table_name} {where_clause}"
 
+        print("QUERY", query)
         return {"q": query}
 
     @property
@@ -821,6 +824,8 @@ class BulkIncrementalSalesforceStream(BulkSalesforceStream, IncrementalRestSales
     ) -> MutableMapping[str, Any]:
         start_date = stream_slice["start_date"]
         end_date = stream_slice["end_date"]
+        print("start_date", start_date)
+        print("end_date", end_date)
 
         select_fields = self.get_query_select_fields()
         table_name = self.name
@@ -828,6 +833,7 @@ class BulkIncrementalSalesforceStream(BulkSalesforceStream, IncrementalRestSales
 
         where_clause = f"WHERE {' AND '.join(where_conditions)}"
         query = f"SELECT {select_fields} FROM {table_name} {where_clause}"
+        print("QUERY", query)
         return {"q": query}
 
 
