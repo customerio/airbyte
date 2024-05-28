@@ -352,7 +352,6 @@ class Salesforce:
         if resp.status_code == 404 and sobject:
             self.logger.error(f"not found a description for the sobject '{sobject}'. Sobject options: {sobject_options}")
         resp_json: Mapping[str, Any] = resp.json()
-        print("describe", resp_json)
         return resp_json
 
     def generate_schema(self, stream_name: str = None, stream_options: Mapping[str, Any] = None) -> Mapping[str, Any]:
