@@ -60,7 +60,7 @@ jobs:
     steps:
       - name: Search for valid connector name format
         id: regex
-        uses: AsasInnab/regex-action@v1
+        uses: AsasInnab/regex-action@e0139592bcb8152450f2f46a0b815c9c0f4e59ef # v1
         with:
           regex_pattern: "^((connectors|bases)/)?[a-zA-Z0-9-_]+$"
           regex_flags: "i" # required to be set for this plugin
@@ -70,7 +70,7 @@ jobs:
         run: echo "The connector provided has an invalid format!" && exit 1
       - name: Link comment to workflow run
         if: github.event.inputs.comment-id
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae # v1.4.5
         with:
           comment-id: ${{ github.event.inputs.comment-id }}
           body: |
@@ -149,7 +149,7 @@ jobs:
           retention-days: 3
       - name: Add Success Comment
         if: github.event.inputs.comment-id && success()
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae # v1.4.5
         with:
           comment-id: ${{ github.event.inputs.comment-id }}
           body: |
@@ -157,7 +157,7 @@ jobs:
             ${{env.PYTHON_UNITTEST_COVERAGE_REPORT}}
       - name: Add Failure Comment
         if: github.event.inputs.comment-id && failure()
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae # v1.4.5
         with:
           comment-id: ${{ github.event.inputs.comment-id }}
           body: |
@@ -174,7 +174,7 @@ jobs:
     if: ${{ always() }} # required to stop the runner even if the error happened in the previous jobs
     steps:
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@b6385f457e254eddd5009a9a0ecd54bbc1dae04f # v1.7.0
         with:
           aws-access-key-id: ${{ secrets.SELF_RUNNER_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.SELF_RUNNER_AWS_SECRET_ACCESS_KEY }}
@@ -187,7 +187,7 @@ jobs:
             ${{ secrets.GH_PAT_BUILD_RUNNER_OSS }} \
             ${{ secrets.GH_PAT_BUILD_RUNNER_BACKUP }}
       - name: Stop EC2 runner
-        uses: supertopher/ec2-github-runner@base64v1.0.10
+        uses: supertopher/ec2-github-runner@0a62b16b7a86a45725a1755884f8cee7a5068ad8 # base64v1.0.10
         with:
           mode: stop
           github-token: ${{ env.PAT }}

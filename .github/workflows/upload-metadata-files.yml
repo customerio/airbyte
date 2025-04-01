@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v44
+        uses: tj-actions/changed-files@c65cd883420fd2eb864698a825fc4162dd94482c # v44.5.7
         with:
           files: "airbyte-integrations/connectors/**/metadata.yaml"
       - name: Setup Python 3.10
@@ -35,7 +35,7 @@ jobs:
           done
       - name: Slack Notification - Failure
         if: failure()
-        uses: rtCamp/action-slack-notify@master
+        uses: rtCamp/action-slack-notify@c33737706dea87cd7784c687dadc9adf1be59990 # master
         env:
           SLACK_WEBHOOK: ${{ secrets.PUBLISH_ON_MERGE_SLACK_WEBHOOK }}
           SLACK_USERNAME: Metadata Service

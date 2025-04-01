@@ -75,7 +75,7 @@ jobs:
 
       - name: Format Failure on Master Slack Channel [MASTER]
         if: steps.airbyte_ci_format_check_all.outcome == 'failure' && github.ref == 'refs/heads/master'
-        uses: abinoda/slack-action@master
+        uses: abinoda/slack-action@a5a262c896a1cc80dcbae59ba95513e2dfb21439 # master
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN_AIRBYTE_TEAM }}
         with:

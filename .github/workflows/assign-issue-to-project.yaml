@@ -13,7 +13,7 @@ jobs:
     name: Assign to Airbyte Github Project
     steps:
       - name: Assign documentation issues to the Documentation Roadmap project
-        uses: srggrs/assign-one-project-github-action@1.2.0
+        uses: srggrs/assign-one-project-github-action@ee9e04cf29076579440cf7a149b0d5647467dc5b # 1.2.0
         if: |
           contains(github.event.issue.labels.*.name, 'area/documentation') ||
           contains(github.event.pull_request.labels.*.name, 'area/documentation')
@@ -21,13 +21,13 @@ jobs:
           project: "https://github.com/airbytehq/airbyte/projects/4"
           column_name: "Needs Triage"
       - name: Assign New Community Issues to Github Project
-        uses: srggrs/assign-one-project-github-action@1.2.0
+        uses: srggrs/assign-one-project-github-action@ee9e04cf29076579440cf7a149b0d5647467dc5b # 1.2.0
         if: contains(github.event.issue.labels.*.name, 'community')
         with:
           project: "https://github.com/airbytehq/airbyte/projects/16"
           column_name: "To do"
       - name: Assign New Community PR to Github Project
-        uses: srggrs/assign-one-project-github-action@1.2.0
+        uses: srggrs/assign-one-project-github-action@ee9e04cf29076579440cf7a149b0d5647467dc5b # 1.2.0
         if: contains(github.event.pull_request.labels.*.name, 'community')
         with:
           project: "https://github.com/airbytehq/airbyte/projects/15"

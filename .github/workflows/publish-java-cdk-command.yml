@@ -62,7 +62,7 @@ jobs:
     steps:
       - name: Link comment to Workflow Run
         if: github.event.inputs.comment-id
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae # v1.4.5
         with:
           comment-id: ${{ github.event.inputs.comment-id }}
           body: |
@@ -97,7 +97,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
       - name: Build Java CDK
-        uses: burrunan/gradle-cache-action@v1
+        uses: burrunan/gradle-cache-action@c15634bb25b7284dc084f38dff4e838048b7feaf # v1.22
         env:
           CI: true
         with:
@@ -110,7 +110,7 @@ jobs:
       - name: Check for Existing Version
         # we only check existing version if it's a manual trigger and FORCE is set to false
         if: ${{ (env.FORCE != 'true') }}
-        uses: burrunan/gradle-cache-action@v1
+        uses: burrunan/gradle-cache-action@c15634bb25b7284dc084f38dff4e838048b7feaf # v1.22
         env:
           CI: true
         with:
@@ -122,7 +122,7 @@ jobs:
 
       - name: Publish Poms and Jars to CloudRepo
         if: ${{ env.DRY_RUN == 'false' }}
-        uses: burrunan/gradle-cache-action@v1
+        uses: burrunan/gradle-cache-action@c15634bb25b7284dc084f38dff4e838048b7feaf # v1.22
         env:
           CI: true
           CLOUDREPO_USER: ${{ secrets.CLOUDREPO_USER }}
@@ -137,7 +137,7 @@ jobs:
 
       - name: Add Success Comment
         if: github.event.inputs.comment-id && success()
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae # v1.4.5
         with:
           comment-id: ${{ github.event.inputs.comment-id }}
           edit-mode: append
@@ -146,7 +146,7 @@ jobs:
 
       - name: Add Failure Comment
         if: github.event.inputs.comment-id && failure()
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae # v1.4.5
         with:
           comment-id: ${{ github.event.inputs.comment-id }}
           edit-mode: append
@@ -155,7 +155,7 @@ jobs:
 
       - name: "Post failure to Slack channel"
         if: ${{ env.DRY_RUN == 'false' && failure() }}
-        uses: slackapi/slack-github-action@v1.23.0
+        uses: slackapi/slack-github-action@007b2c3c751a190b6f0f040e47ed024deaa72844 # v1.23.0
         continue-on-error: true
         with:
           channel-id: C04J1M66D8B
@@ -184,7 +184,7 @@ jobs:
 
       - name: "Post success to Slack channel"
         if: ${{ env.DRY_RUN == 'false' && !failure() }}
-        uses: slackapi/slack-github-action@v1.23.0
+        uses: slackapi/slack-github-action@007b2c3c751a190b6f0f040e47ed024deaa72844 # v1.23.0
         continue-on-error: true
         with:
           channel-id: C04J1M66D8B
