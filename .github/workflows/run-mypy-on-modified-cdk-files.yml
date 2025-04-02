@@ -20,7 +20,7 @@ jobs:
       - run: pip install mypy==1.6.0
       - name: Get Python changed files
         id: changed-py-files
-        uses: tj-actions/changed-files@v43
+        uses: tj-actions/changed-files@20576b4b9ed46d41e2d45a2256e5e2316dde6834 # v43.0.1
         with:
           files: "airbyte-cdk/python/airbyte_cdk/**/*.py"
       - name: Run if any of the listed files above is changed

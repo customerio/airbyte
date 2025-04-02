@@ -26,7 +26,7 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: actions/checkout@v3
       - id: changes
-        uses: dorny/paths-filter@v2
+        uses: dorny/paths-filter@7267a8516b6f92bdb098633497bad573efdbf271 # v2.12.0
         with:
           # Note: expressions within a filter are OR'ed
           filters: |
@@ -44,7 +44,7 @@ jobs:
       - name: Checkout Airbyte
         uses: actions/checkout@v3
       - name: Install Poetry
-        uses: snok/install-poetry@v1
+        uses: snok/install-poetry@76e04a911780d5b312d89783f7b1cd627778900a # v1.4.1
       - name: Install Dependencies
         id: install_dependencies
         working-directory: airbyte-cdk/python
@@ -64,7 +64,7 @@ jobs:
     if: ${{ failure() && github.ref == 'refs/heads/master' }}
     steps:
       - name: Call Instatus Webhook
-        uses: joelwmale/webhook-action@master
+        uses: joelwmale/webhook-action@cc1a66f987e1591785273fd6f9d2f7a9d8d7c9cd # master
         with:
           url: ${{ secrets.INSTATUS_CONNECTOR_CI_WEBHOOK_URL }}
           body: '{ "trigger": "down", "status": "HASISSUES" }'
@@ -77,7 +77,7 @@ jobs:
     if: ${{ success() && github.ref == 'refs/heads/master' }}
     steps:
       - name: Call Instatus Webhook
-        uses: joelwmale/webhook-action@master
+        uses: joelwmale/webhook-action@cc1a66f987e1591785273fd6f9d2f7a9d8d7c9cd # master
         with:
           url: ${{ secrets.INSTATUS_CONNECTOR_CI_WEBHOOK_URL }}
           body: '{ "trigger": "up" }'
@@ -98,7 +98,7 @@ jobs:
           AIRBYTE_TEAM_BOT_SLACK_TOKEN: ${{ secrets.SLACK_AIRBYTE_TEAM_READ_USERS }}
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish to OSS Build Failure Slack Channel
-        uses: abinoda/slack-action@master
+        uses: abinoda/slack-action@a5a262c896a1cc80dcbae59ba95513e2dfb21439 # master
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN_AIRBYTE_TEAM }}
         with:
@@ -119,14 +119,14 @@ jobs:
     if: success()
     steps:
       - name: Get Previous Workflow Status
-        uses: Mercymeilya/last-workflow-status@v0.3
+        uses: Mercymeilya/last-workflow-status@3418710aefe8556d73b6f173a0564d38bcfd9a43 # v0.3.3
         id: last_status
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       # To avoid clogging up the channel, only publish build success if the previous build was a failure since this means the build was fixed.
       - name: Publish Build Fixed Message to OSS Build Failure Slack Channel
         if: ${{ steps.last_status.outputs.last_status == 'failure' }}
-        uses: abinoda/slack-action@master
+        uses: abinoda/slack-action@a5a262c896a1cc80dcbae59ba95513e2dfb21439 # master
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN_AIRBYTE_TEAM }}
         with:

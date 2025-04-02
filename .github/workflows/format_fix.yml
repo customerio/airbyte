@@ -39,7 +39,7 @@ jobs:
         run: git ls-files -i -c --exclude-from=.gitignore | xargs -r git rm --cached
 
       - name: Commit Formatting Changes (PR)
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@e348103e9026cc0eee72ae06630dbe30c8bf7a79 # v5.1.0
         # Don't commit if we're on master
         if: github.ref != 'refs/heads/master'
         with:

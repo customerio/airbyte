@@ -42,7 +42,7 @@ jobs:
         run: print-mandatory-reviewers >> $GITHUB_OUTPUT
       - name: Check if the review requirements are met
         if: steps.write-review-requirements-file.outputs.CREATED_REQUIREMENTS_FILE == 'true'
-        uses: Automattic/action-required-review@v3
+        uses: Automattic/action-required-review@81ca11e65a65c85c82833bbbfcbadb2874d0b135 # v3.1.0
         with:
           status: ${{ steps.get-mandatory-reviewers.outputs.MANDATORY_REVIEWERS  }}
           token: ${{ secrets.OCTAVIA_4_ROOT_ACCESS }}

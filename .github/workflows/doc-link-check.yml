@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       # check all files on master
-      - uses: gaurav-nelson/github-action-markdown-link-check@v1
+      - uses: gaurav-nelson/github-action-markdown-link-check@499c1e7f3637c131334fa8e937c45144f79d72d2 # v1
         with:
           use-quiet-mode: "yes"
           check-modified-files-only: "no"
@@ -24,7 +24,7 @@ jobs:
       # posts to #_doc_link_checker
       - name: Publish Success to Slack
         if: success()
-        uses: abinoda/slack-action@master
+        uses: abinoda/slack-action@a5a262c896a1cc80dcbae59ba95513e2dfb21439 # master
         env:
           SLACK_BOT_TOKEN: ${{ secrets.DOC_LINK_CHECKER_BOT_TOKEN }}
         with:
@@ -37,7 +37,7 @@ jobs:
       # posts to #_doc_link_checker
       - name: Publish Failure to Slack
         if: failure()
-        uses: abinoda/slack-action@master
+        uses: abinoda/slack-action@a5a262c896a1cc80dcbae59ba95513e2dfb21439 # master
         env:
           SLACK_BOT_TOKEN: ${{ secrets.DOC_LINK_CHECKER_BOT_TOKEN }}
         with:

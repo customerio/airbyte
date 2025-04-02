@@ -75,7 +75,7 @@ jobs:
     if: ${{ failure() && github.ref == 'refs/heads/master' }}
     steps:
       - name: Call Instatus Webhook
-        uses: joelwmale/webhook-action@master
+        uses: joelwmale/webhook-action@cc1a66f987e1591785273fd6f9d2f7a9d8d7c9cd # master
         with:
           url: ${{ secrets.INSTATUS_CONNECTOR_CI_WEBHOOK_URL }}
           body: '{ "trigger": "down", "status": "HASISSUES" }'
@@ -88,7 +88,7 @@ jobs:
     if: ${{ success() && github.ref == 'refs/heads/master' }}
     steps:
       - name: Call Instatus Webhook
-        uses: joelwmale/webhook-action@master
+        uses: joelwmale/webhook-action@cc1a66f987e1591785273fd6f9d2f7a9d8d7c9cd # master
         with:
           url: ${{ secrets.INSTATUS_CONNECTOR_CI_WEBHOOK_URL }}
           body: '{ "trigger": "up" }'
@@ -109,7 +109,7 @@ jobs:
           AIRBYTE_TEAM_BOT_SLACK_TOKEN: ${{ secrets.SLACK_AIRBYTE_TEAM_READ_USERS }}
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish to OSS Build Failure Slack Channel
-        uses: abinoda/slack-action@master
+        uses: abinoda/slack-action@a5a262c896a1cc80dcbae59ba95513e2dfb21439 # master
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN_AIRBYTE_TEAM }}
         with:

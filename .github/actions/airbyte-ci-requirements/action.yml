@@ -38,7 +38,7 @@ runs:
         fi
 
     - name: Get changed files
-      uses: tj-actions/changed-files@v39
+      uses: tj-actions/changed-files@fea790cb660e33aef4bdf07304e28fedd77dfa13 # v39.2.4
       id: changes
       with:
         files_yaml: |

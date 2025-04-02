@@ -32,7 +32,7 @@ jobs:
 
       - name: Get short SHA
         id: get_short_sha
-        uses: benjlevesque/short-sha@v2.2
+        uses: benjlevesque/short-sha@36eb8c530990ceac5ddf3c0bc32d02c677ae9706 # v2.2
 
       - name: Install Python
         id: install_python
@@ -42,7 +42,7 @@ jobs:
 
       - name: Install Poetry
         id: install_poetry
-        uses: snok/install-poetry@v1
+        uses: snok/install-poetry@76e04a911780d5b312d89783f7b1cd627778900a # v1.4.1
 
       - name: Install Dependencies
         id: install_dependencies

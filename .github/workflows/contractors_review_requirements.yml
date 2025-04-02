@@ -16,14 +16,14 @@ jobs:
     if: ${{ github.repository == 'airbytehq/airbyte' }}
     steps:
       - name: Check contributor team membership
-        uses: tspascoal/get-user-teams-membership@v3
+        uses: tspascoal/get-user-teams-membership@57e9f42acd78f4d0f496b3be4368fc5f62696662 # v3.0.0
         id: actorTeams
         with:
           username: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.OCTAVIA_4_ROOT_ACCESS }}
       - if: ${{ (contains(steps.actorTeams.outputs.teams, 'community-contractor')) }}
         name: Check if the review requirements are met
-        uses: Automattic/action-required-review@v3
+        uses: Automattic/action-required-review@81ca11e65a65c85c82833bbbfcbadb2874d0b135 # v3.1.0
         with:
           status: Required review
           token: ${{ secrets.OCTAVIA_4_ROOT_ACCESS }}
